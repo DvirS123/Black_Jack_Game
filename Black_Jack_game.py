@@ -30,7 +30,7 @@ win = pygame.display.set_mode((750,600))
 # color fill green
 win.fill((0,150,0))
 #naming game
-pygame.display.set_caption('Black Jack game by Dvir Shiri')
+pygame.display.set_caption('Black Jack game')
 #create object player
 used_cards = []#cards that were already played cannot show again that is why cards will accumulate here as game keeps going
 is_turn = True#refering the turns

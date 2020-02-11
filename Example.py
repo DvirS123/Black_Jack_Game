@@ -1,4 +1,7 @@
 import pygame
+'''
+This file was ment to learn how to add the chip buttons properly
+'''
 pygame.init()
 
 win = pygame.display.set_mode((750,500))

@@ -1,7 +1,7 @@
 import pygame
 
 
-#This page was ment to show about
+#This page was ment to show about 1
 
 def show_about(win):
 	'''

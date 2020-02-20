@@ -1,4 +1,10 @@
 import random
+import pygame
+import Developer_help
+import Check_reasults
+import Load_image
+import Sound_effects
+import Deck_module
 '''
 Dealer Ai modle actually contains probablities for diffrent number summaries and according to that randomize between probabilities
 the chances of hit or stand
@@ -95,3 +101,73 @@ if __name__ == '__main__':
 		print('True')
 	else:
 		print('False')
+
+
+
+#-------------------------------------------------------Dealer turn-------------------------------------------------
+def dealer_turn(win,dealer_card1,dealer_card2,at_table):
+	'''
+	Because I need to create an AI player i will use a lot the random module
+	takes in 2 card parameters and almost no user interface
+	'''
+	draw_effect = Sound_effects.get_sound('DRAW')
+	pass_effect = Sound_effects.get_sound('PASS')
+	card1_image = pygame.image.load(Load_image.get_card_image(dealer_card1))
+	card2_image = pygame.image.load(Load_image.get_card_image(dealer_card2))
+	card_x = 400
+	card_y = 200
+	#in order to view the cards on the screen, get card function imported from load_card_image module allows me to access loaction of image
+	#without any trouble
+	win.fill((0,150,0))
+	draw_effect.play()
+	win.blit(card1_image,(card_x,card_y))
+	pygame.display.update()
+	card_x+=40
+	card_y+=40
+	#stored coordinations in a variable in order to allow posting of new cards over the board also
+	pygame.time.delay(500)
+	draw_effect.play()
+	win.blit(card2_image,(card_x,card_y))
+	pygame.display.update()
+	print('{} it is your turn'.format('Dealer'))
+	######### correct the value
+	dealer_card1 = Developer_help.correct_card_value(dealer_card1)
+	dealer_card2 = Developer_help.correct_card_value(dealer_card2)
+	cards_sum = Check_reasults.check_cards_sum(win, False, dealer_card1[0], dealer_card2[0])
+	#i there is an ace let him decide
+	if dealer_card1[0] == 1 or dealer_card2[0] == 1:
+		if ace_ans(cards_sum) is True:
+			cards_sum+=10
+	dealer_turn = True
+	while dealer_turn:
+		pygame.time.delay(1000)
+		dealer_turn = hit_answer_rules(cards_sum)
+		if dealer_turn is True:
+			draw_effect.play()
+			new_card = Deck_module.pull_card()
+			card_x+=40
+			card_y+=40
+			#post card image changes cordination so new posting could be shown
+			new_card_image = pygame.image.load(Load_image.get_card_image(new_card))
+			win.blit(new_card_image,(card_x,card_y))
+			pygame.display.update()
+			pygame.time.delay(1000)
+			if new_card[0] == 1:
+				if ace_ans(cards_sum):
+					value_new_card = (11,'')#to save the same data type *tuple
+				else:
+					value_new_card = (1,'')
+			value_new_card = Developer_help.correct_card_value(new_card)
+			cards_sum = Check_reasults.check_cards_sum(win, False, value_new_card[0], cards_sum)
+			if cards_sum == 21:
+				return cards_sum
+			elif cards_sum is False:
+				return False
+	pass_effect.play()
+	print('The {} has ended his turn with sum of {}'.format('Dealer',cards_sum))
+	Developer_help.write(win,'Stand',90,200,250)
+	pygame.display.update()
+	pygame.time.delay(2000)
+	return cards_sum
+
+			#so the function would stop and wont let the game continue

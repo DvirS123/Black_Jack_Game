@@ -1,8 +1,10 @@
 import pygame
 import Classes_objects
+import Sound_effects
 from Developer_help import write
 
 back_button = Classes_objects.get_button('BACK')
+button_effect = Sound_effects.get_sound('BUTTON')
 
 
 #This page was ment to show instructions
@@ -49,6 +51,7 @@ def show_instructions(win):
 
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if back_button.is_over(pos):#in range of 'back' button
+					button_effect.play()
 					return True #back to main
 
 			if event.type == pygame.QUIT:

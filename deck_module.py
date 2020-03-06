@@ -116,5 +116,6 @@ def pull_card():
 
 
 if __name__ == '__main__':
-	print('random card is:')
-	deck_for_game()
+	for i in range(1,53):
+		print('random card is:')
+		print(pull_card())

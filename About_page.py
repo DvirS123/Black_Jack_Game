@@ -1,4 +1,7 @@
 import pygame
+import Sound_effects
+
+button_effect = Sound_effects.get_sound('BUTTON')
 
 
 #This page was ment to show about 1
@@ -11,7 +14,7 @@ def show_about(win):
 		win.blit(((pygame.font.SysFont('comiscans',size)).render(text,1,(0,0,0))),(x,y))
 		return 0
 	line1 = " - soon to be built by Dvir Shiri"
-	line2 = " - fix logo "
+	line2 = " - volume bar "
 	line3 = " - create options page"
 	line4 = " - offer option to mute in options page"
 	line5 = " - add more sound effects and songs to background"
@@ -44,6 +47,7 @@ def show_about(win):
 			pygame.display.update()
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if pos[0] in range(20,95) and pos[1] in range(70,120):#in range of 'back' button
+					button_effect.play()
 					return True
 			if event.type == pygame.QUIT:
 				return False

@@ -99,6 +99,7 @@ bet_clear_button = Button((255,0,0),25,250,100,50,'Clear',30)
 bet_allin_button = Button((255,0,0),112,175,100,50,'All in',30)
 low_ace_button = Button((255,0,0),200,200,100,50,'Ace = 1',30)
 high_ace_button = Button((255,0,0),200,350,100,50,'Ace = 11',30)
+split_button = Button((255,0,0),200,275,150,100,'Split',30)
 
 
 def get_button(name):
@@ -126,4 +127,6 @@ def get_button(name):
 		return low_ace_button
 	elif name == 'HIGH_ACE':
 		return high_ace_button
+	elif name == 'SPLIT':
+		return split_button
 

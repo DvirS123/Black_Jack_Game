@@ -101,8 +101,8 @@ while run:
 						table.win(rand_bet)
 						table.win(player1_bet[0])#give money to table
 						print('Drawing Player1 cards..')
-						player1_card1 = (3,'heart')
-						player1_card2 = (3,'clover')
+						player1_card1 = Deck_module.pull_card()
+						player1_card2 = Deck_module.pull_card()
 						print('Drawing Dealer cards..')
 						dealer_card1 = Deck_module.pull_card()
 						dealer_card2 = Deck_module.pull_card()

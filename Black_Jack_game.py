@@ -145,7 +145,7 @@ while run:
 								try:
 									#just check if it is an error
 									if len(player1_reasult) == 2:
-										
+										pass		
 								except:
 									player1.win(Check_reasults.check_game_reasults(win,dealer_reasult,player1_reasult,table.balance,player1_bet[0],player1.name))
 								else:

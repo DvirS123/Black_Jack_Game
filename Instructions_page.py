@@ -13,23 +13,31 @@ def show_instructions(win):
 	'''
 	Page to show instructions about the game
 	'''
-	rule1 = " - The goal of blackjack is to beat the dealer's hand without going over 21."
-	rule2 = " - Face cards are worth 10..."
-	rule3 = " - Each player starts with two cards."
-	rule4 = " - To 'Hit' is to ask for another card. ..."
-	rule5 = " - If you go over 21 you bust, and the dealer wins regardless of the dealer's hand."
-	rule6 = " - In order to win the game you must aquire a balance of 800 chips"
-	rule7 = " - If you reach a balance of 0 you lose"
+	rule1 = "1 - The goal of blackjack is to beat the dealer's hand without going over 21."
+	rule2 = "2 - Face cards are worth 10..."
+	rule3 = "3 - Each player starts with two cards."
+	rule4 = "4 - To 'Hit' is to ask for another card. ..."
+	rule5 = "5 - If you go over 21 you bust, and the dealer wins regardless of the dealer's hand."
+	rule6 = "6 - In order to win the game you must aquire a balance of 3000 chips"
+	rule7 = "7 - If you reach a balance of 0 you lose"
+	rule8 = "8 - Doubling down means doubling the origina bet, this can occur only when the"
+	line8 = "	   value of the cards is 9,10 or 11."
+	rule9 = "9 - Spliting means to divide you hand to two seprate hands plus adding"
+	line9 = "	   original bet,this can occur only when original cards are identical"
 
 	win.fill((0,150,0))
 
-	write(win,rule1,25,25,200)
-	write(win,rule2,25,25,250)
-	write(win,rule3,25,25,300)
-	write(win,rule4,25,25,350)
-	write(win,rule5,25,25,400)
-	write(win,rule6,25,25,450)
-	write(win,rule7,25,25,500)
+	write(win,rule1,25,5,200)
+	write(win,rule2,25,5,230)
+	write(win,rule3,25,5,260)
+	write(win,rule4,25,5,290)
+	write(win,rule5,25,5,320)
+	write(win,rule6,25,5,350)
+	write(win,rule7,25,5,380)
+	write(win,rule8,25,5,410)
+	write(win,line8,25,5,430)
+	write(win,rule9,25,5,460)
+	write(win,line9,25,5,480)
 	write(win,'Good Luck!',50,275,550)
 
 	while True:

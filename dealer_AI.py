@@ -110,6 +110,7 @@ def dealer_turn(win,dealer_card1,dealer_card2,at_table):
 	Because I need to create an AI player i will use a lot the random module
 	takes in 2 card parameters and almost no user interface
 	'''
+
 	draw_effect = Sound_effects.get_sound('DRAW')
 	pass_effect = Sound_effects.get_sound('PASS')
 	card1_image = pygame.image.load(Load_image.get_card_image(dealer_card1))

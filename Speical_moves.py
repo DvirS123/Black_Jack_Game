@@ -121,23 +121,23 @@ def split(win,card1,card2,player1_name):
 					cards_sum = Check_reasults.check_cards_sum(win,is_natural,new_card[0],cards_sum)
 					last_card = new_card
 					if cards_sum is False:
-						return 0
+						return False
 					elif cards_sum is True:
 						return 21
 					#so the function would stop and wont let the game continue
 				if low_ace_button.is_over(pos):
 					button_effect.play()
 					is_ace = False
-					pygame.draw.rect(win,(0,150,0),(40,190,120,220),0)#scrap button
+					pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
 				if high_ace_button.is_over(pos):
 					button_effect.play()
 					is_ace = False
-					pygame.draw.rect(win,(0,150,0),(40,190,120,220),0)#scrap button
+					pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
 					cards_sum = Check_reasults.check_cards_sum(win,is_natural,10,cards_sum)
 					if cards_sum is True:
 						return 21
 					elif cards_sum is False:
-						return 0
+						return False
 
 
 			if event.type == pygame.QUIT:

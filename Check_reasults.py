@@ -11,7 +11,7 @@ def check_cards_sum(win, is_natural, card1, card2 = 0, cards_sum = 0):
 
 		#if won natural
 	if new_cards_sum == 21 and is_natural:
-		Developer_help.write(win,'Black Jack!',90,200,100)
+		Developer_help.write(win,'Black Jack!',90,175,100)
 		pygame.display.update()
 		pygame.time.delay(2000)
 		pygame.draw.rect(win,(0,150,0),(175,0,350,200),0)#to reset the board
@@ -76,7 +76,7 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 	'''
 	Function takes two numbers and makes comparison between them to show who won
 	'''
-	if dealer_reasults == player1_hand1 == player1_hand2:
+	if dealer_reasults == player1_hand1 and dealer_reasults == player1_hand2:
 		#tie
 		print('Its a TIE')
 		Developer_help.write(win,'Tie',90,100,300)
@@ -84,6 +84,22 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 		pygame.time.delay(2000)
 		# return the amount the player has bet
 		return player1_bet
+
+	elif dealer_reasults > player1_hand1 and dealer_reasults == player1_hand2:
+		print('Its a TIE')
+		Developer_help.write(win,'Tie with one hand',90,100,300)
+		pygame.display.update()
+		pygame.time.delay(2000)
+		# return the amount the player has bet divided by two
+		return round(player1_bet/2)
+
+	elif dealer_reasults == player1_hand1 and dealer_reasults > player1_hand2:
+		print('Its a TIE')
+		Developer_help.write(win,'Tie with one hand',90,100,300)
+		pygame.display.update()
+		pygame.time.delay(2000)
+		# return the amount the player has bet divided by two
+		return round(player1_bet/2)
 
 	elif dealer_reasults > player1_hand1 and dealer_reasults > player1_hand2:
 		#if dealer won
@@ -113,7 +129,7 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 
 def check_if_won(win, player1_balance, player1_name):
 
-	if player1_balance >=800:
+	if player1_balance >=3000:
 		Developer_help.write(win,'{} Has won , Congrats!'.format(player1_name),90,20,100)
 		pygame.display.update()
 		Sound_effects.get_sound('WIN').play()

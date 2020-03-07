@@ -174,8 +174,12 @@ def set_bet(win,balance):
 					amount = 0
 					balance = reset_balance
 				if bet_approve_button.is_over(pos):
-					button_effect.play()
-					return amount,balance
+					#check bet limit
+					if amount <2 or amount > 500:
+						Developer_help.write(win,'Limit is between 2 and 500 $',30,175,100)
+					else:
+						button_effect.play()
+						return amount,balance
 
 							
 
@@ -204,11 +208,13 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 	low_ace_button = Classes_objects.get_button('LOW_ACE')
 	high_ace_button = Classes_objects.get_button('HIGH_ACE')
 	split_button = Classes_objects.get_button('SPLIT')
+	double_down_button = Classes_objects.get_button('DOUBLE_DOWN')
 	#------------------------------------------------------------- sound --------------------------
 	draw_effect = Sound_effects.get_sound('DRAW')
 	pass_effect = Sound_effects.get_sound('PASS')
 	button_effect = Sound_effects.get_sound('BUTTON')
 
+	is_double_down = False
 	is_split = False
 	is_ace = False
 	is_natural = True
@@ -240,6 +246,8 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 	player1_card1 = Developer_help.correct_card_value(player1_card1)
 	player1_card2 =  Developer_help.correct_card_value(player1_card2)
 	cards_sum = Check_reasults.check_cards_sum(win,is_natural,player1_card1[0],player1_card2[0])
+	if cards_sum in range(9,12):
+		is_double_down = True
 	cards_used = [player1_card1,player1_card2]
 	while cards_sum < 21:
 
@@ -274,6 +282,15 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 					hit_button.color = (0,0,255)
 				else:
 					hit_button.color = (255,0,0)
+
+				#---------------------------------- Speical buttons --------------------------
+
+				if is_double_down:
+					double_down_button.draw(win,(0,0,0))
+					if double_down_button.is_over(pos):
+						double_down_button.color = (0,0,255)
+					else:
+						double_down_button.color = (255,0,0)
 
 				if is_split:
 					split_button.draw(win,(0,0,0))
@@ -314,6 +331,10 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 					return cards_sum
 				if hit_button.is_over(pos):
 					draw_effect.play()
+					if split:
+						pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
+					else:
+						pygame.draw.rect(win,(0,150,0),(190,190,120,275),0)#scrap button
 					is_split = False
 					is_natural = False
 					new_card = Deck_module.pull_card()#pull card
@@ -345,16 +366,16 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 					button_effect.play()
 					is_ace = False
 					if split:
-						pygame.draw.rect(win,(0,150,0),(40,190,120,220),0)#scrap button
+						pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
 					else:
-						pygame.draw.rect(win,(0,150,0),(190,190,120,220),0)#scrap button
+						pygame.draw.rect(win,(0,150,0),(190,190,120,275),0)#scrap button
 				if high_ace_button.is_over(pos):
 					button_effect.play()
 					is_ace = False
 					if split:
-						pygame.draw.rect(win,(0,150,0),(40,190,120,220),0)#scrap button
+						pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
 					else:
-						pygame.draw.rect(win,(0,150,0),(190,190,120,220),0)#scrap button
+						pygame.draw.rect(win,(0,150,0),(190,190,120,275),0)#scrap button
 					cards_sum = Check_reasults.check_cards_sum(win,is_natural,10,cards_sum)
 					if cards_sum is True:
 						return True
@@ -363,11 +384,13 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 				if is_split is True:
 					if split_button.is_over(pos):
 						is_split = False
+						is_double_down = False
 						table.win(player1_bet)
 						player1.bet(player1_bet)
 						player1_balance = player1.balance
 						at_table = table.balance
 						pygame.draw.rect(win,(100,150,0),(470,40,300,100),0)#to reset the board
+						pygame.draw.rect(win,(0,150,0),(40,190,150,275),0)#scrap button
 						Developer_help.write(win,"{}'s Balance: {}".format(player1_name,player1_balance),30,500,50)
 						Developer_help.write(win,'Overall bet amount: {}'.format(at_table),30,500,100)
 						pygame.display.update()
@@ -382,6 +405,17 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 						split = True
 						card_x-=40
 						card_y-=40
+				if is_double_down and double_down_button.is_over(pos):
+					if player1_balance >= player1_bet:
+						is_double_down = False
+						table.win(player1_bet)
+						at_table += player1_bet
+						player1.bet(player1_bet)
+						player1_balance-= player1_bet
+						pygame.draw.rect(win,(0,150,0),(40,190,150,275),0)#scrap button
+						pygame.draw.rect(win,(0,150,0),(190,190,120,275),0)#scrap button
+					else:
+						Developer_help.write(win,'There are not enough chips for that',30,150,100)
 
 			if event.type == pygame.QUIT:
 				return 'quit'

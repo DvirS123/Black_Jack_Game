@@ -86,7 +86,7 @@ while run:
 
 
 				#&&&&&&&&&&&&&&&&&&&&&&&&&&& Main Gameplay here &&&&&&&&&&&&&#
-				while player1.balance < 800 and player1.balance > 0:
+				while player1.balance < 3000 and player1.balance > 0:
 					player1_bet =  Player_phases.set_bet(win,player1.balance)
 					#Get away options
 					if player1_bet == 'back':
@@ -95,10 +95,10 @@ while run:
 						run = False
 						break
 					else:
+						#set the bet and make it equal to dealers bet
 						player1.balance = player1_bet[1]
-						rand_bet = random.randint(2,150)
-						dealer.bet(rand_bet)#for the sake of the game EXAMPLE 
-						table.win(rand_bet)
+						dealer.bet(player1_bet[0])
+						table.win(player1_bet[0])
 						table.win(player1_bet[0])#give money to table
 						print('Drawing Player1 cards..')
 						player1_card1 = Deck_module.pull_card()
@@ -142,10 +142,15 @@ while run:
 							else:
 								#comparison func
 								#if split happened
-								if len(player1_reasult) == 2:
-									player1.win(Check_reasults.check_game_reasults_split(win,dealer_reasult,player1_reasult[0], player1_reasult[1],table.balance,player1_bet[0],player1.name))
-								else:
+								try:
+									#just check if it is an error
+									if len(player1_reasult) == 2:
+										
+								except:
 									player1.win(Check_reasults.check_game_reasults(win,dealer_reasult,player1_reasult,table.balance,player1_bet[0],player1.name))
+								else:
+									player1.win(Check_reasults.check_game_reasults_split(win,dealer_reasult,player1_reasult[0], player1_reasult[1],table.balance,player1_bet[0],player1.name))
+									
 								table.balance = 0
 						Check_reasults.check_if_won(win,player1.balance,player1.name)
 									

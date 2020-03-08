@@ -5,6 +5,7 @@ import Deck_module
 import pygame
 import random
 import Instructions_page
+import Options_page
 import About_page
 import Menu_page
 import Classes_objects
@@ -170,6 +171,7 @@ while run:
 				#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ options ^^^^^^^^^^^^^^^
 				button_effect.play()
 				print('Options button pressed')
+				run = Options_page.show_options_page(win)
 
 				#------------------------------------------------------------------
 			elif about_button.is_over(pos):

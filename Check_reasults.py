@@ -132,14 +132,21 @@ def check_if_won(win, player1_balance, player1_name):
 	if player1_balance >=3000:
 		Developer_help.write(win,'{} Has won , Congrats!'.format(player1_name),90,20,100)
 		pygame.display.update()
+		pygame.mixer.music.pause()
+		pygame.time.delay(500)
 		Sound_effects.get_sound('WIN').play()
-		pygame.time.delay(3000)
+		pygame.time.delay(4000)
+		pygame.mixer.music.unpause()
 
 	elif player1_balance <=0:
 		Developer_help.write(win,'{} Has lost'.format(player1_name),90,200,100)
 		pygame.display.update()
+		pygame.mixer.music.pause()
+		pygame.time.delay(500)
 		Sound_effects.get_sound('LOSE').play()
 		pygame.time.delay(3000)
+		pygame.mixer.music.unpause()
+		pygame.time.delay(500)
 
 
 

@@ -101,7 +101,18 @@ low_ace_button = Button((255,0,0),200,200,100,50,'Ace = 1',30)
 high_ace_button = Button((255,0,0),200,400,100,50,'Ace = 11',30)
 split_button = Button((255,0,0),225,275,150,100,'Split',30)
 double_down_button = Button((255,0,0),50,275,150,100,'Double Down',30)
-
+text_box = Button((0,0,0),250,245,200,50,'',10)
+vol_bar0 = Button((255,0,0),75,425,50,50,'0',30)
+vol_bar1 = Button((255,0,0),125,425,50,50,'1',30)
+vol_bar2 = Button((255,0,0),175,425,50,50,'2',30)
+vol_bar3 = Button((255,0,0),225,425,50,50,'3',30)
+vol_bar4 = Button((255,0,0),275,425,50,50,'4',30)
+vol_bar5 = Button((255,0,0),325,425,50,50,'5',30)
+vol_bar6 = Button((255,0,0),375,425,50,50,'6',30)
+vol_bar7 = Button((255,0,0),425,425,50,50,'7',30)
+vol_bar8 = Button((255,0,0),475,425,50,50,'8',30)
+vol_bar9 = Button((255,0,0),525,425,50,50,'9',30)
+vol_bar10 = Button((255,0,0),575,425,50,50,'10',30)
 
 def get_button(name):
 	if name == 'START':
@@ -132,5 +143,30 @@ def get_button(name):
 		return split_button
 	elif name == 'DOUBLE_DOWN':
 		return double_down_button
+	elif name == 'TEXT_BOX':
+		return text_box
+	elif name == 'VOL0':
+		return vol_bar0
+	elif name == 'VOL1':
+		return vol_bar1
+	elif name == 'VOL2':
+		return vol_bar2
+	elif name == 'VOL3':
+		return vol_bar3
+	elif name == 'VOL4':
+		return vol_bar4
+	elif name == 'VOL5':
+		return vol_bar5
+	elif name == 'VOL6':
+		return vol_bar6
+	elif name == 'VOL7':
+		return vol_bar7
+	elif name == 'VOL8':
+		return vol_bar8
+	elif name == 'VOL9':
+		return vol_bar9
+	elif name == 'VOL10':
+		return vol_bar10
+
 
 

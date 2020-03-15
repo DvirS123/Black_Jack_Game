@@ -4,7 +4,7 @@ import Classes_objects
 text_box_block = Classes_objects.get_button('TEXT_BOX')
 
 def write(win,text,size,x,y):
-	win.blit(((pg.font.SysFont('comiscans',size)).render(text,1,(0,0,0))),(x,y))
+	win.blit(((pg.font.Font('Fonts\BadaboomBB_Reg.ttf',size-6)).render(text,1,(0,0,0))),(x,y))
 	return 0
 
 def correct_card_value(card):
@@ -17,7 +17,7 @@ def correct_card_value(card):
 		return card
 
 def text_box(win):
-    font = pg.font.Font(None, 70)
+    font = pg.font.Font('Fonts\BadaboomBB_Reg.ttf', 70)
     clock = pg.time.Clock()
     input_box = pg.Rect(250, 250, 140, 60)
     color_inactive = (0,0,255)

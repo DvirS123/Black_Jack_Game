@@ -27,6 +27,8 @@ def split(win,card1,card2,player1_name):
 	pygame.draw.rect(win,(0,150,0),(175,200,450,250),0)#to reset the board
 	card1_image = pygame.image.load(Load_image.get_card_image(card1))
 	card2_image = pygame.image.load(Load_image.get_card_image(card2))
+	card1 = Developer_help.correct_card_value(card1)
+	card2 = Developer_help.correct_card_value(card2)
 	hand1_x = 400
 	hand1_y = 200
 	hand2_x = 200

@@ -1,5 +1,4 @@
 #in this file i am going to start the main program in which i am going to build the game
-import Dealer_AI
 import Load_image
 import Deck_module
 import pygame
@@ -13,6 +12,7 @@ import Developer_help
 import Player_phases
 import Sound_effects
 import Check_reasults
+import Dealer_AI
 pygame.init()
 #initiating pygame
 ################################################################## SETTINGS ####################################################
@@ -79,7 +79,6 @@ while run:
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			if start_button.is_over(pos):
 				button_effect.play()
-				print('perssed Start game button')
 				############################################## set game for play################
 				player1.balance = 400
 				dealer.balance = 0
@@ -101,10 +100,10 @@ while run:
 						dealer.bet(player1_bet[0])
 						table.win(player1_bet[0])
 						table.win(player1_bet[0])#give money to table
-						print('Drawing Player1 cards..')
+						#Drawing Player1 cards...
 						player1_card1 = Deck_module.pull_card()
 						player1_card2 = Deck_module.pull_card()
-						print('Drawing Dealer cards..')
+						#Drawing Dealer cards..
 						dealer_card1 = Deck_module.pull_card()
 						dealer_card2 = Deck_module.pull_card()
 						#player turn
@@ -118,7 +117,7 @@ while run:
 						elif player1_reasult is False:
 							#if player 1 lost							
 							dealer.win(table.balance)
-							Developer_help.write(win,'{} takes {} chips'.format(dealer.name,table.balance),90,50,300)
+							Developer_help.write(win,'{} takes {} chips'.format(dealer.name,table.balance),70,50,300)
 							table.balance = 0
 							pygame.display.update()
 							pygame.time.delay(2000)
@@ -126,7 +125,7 @@ while run:
 						elif player1_reasult is True:
 							#player 1 black jack
 							player1.win(round(table.balance*1.5))
-							Developer_help.write(win,'{} takes {} chips'.format(player1.name,round(table.balance*1.5)),90,50,300)
+							Developer_help.write(win,'{} takes {} chips'.format(player1.name,round(table.balance*1.5)),70,50,300)
 							table.balance = 0
 							pygame.display.update()
 							pygame.time.delay(2000)
@@ -136,7 +135,7 @@ while run:
 							if dealer_reasult is False:
 								#dealer bust
 								player1.win(table.balance)
-								Developer_help.write(win,'{} takes {} chips'.format(player1.name,table.balance),90,50,300)
+								Developer_help.write(win,'{} takes {} chips'.format(player1.name,table.balance),70,50,300)
 								table.balance = 0
 								pygame.display.update()
 								pygame.time.delay(2000)
@@ -162,7 +161,6 @@ while run:
 			elif instructions_button.is_over(pos):
 				#*************************************** instructions ***********
 				button_effect.play()
-				print('Instructions Button pressed')
 				#&&&&&&&&&&&&&&&&&&&&&&&&&&&7 Instructions &&&&&&&&&&&&&&&&&&
 				run = Instructions_page.show_instructions(win)
 
@@ -170,14 +168,12 @@ while run:
 			elif options_button.is_over(pos):
 				#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ options ^^^^^^^^^^^^^^^
 				button_effect.play()
-				print('Options button pressed')
 				run = Options_page.show_options_page(win)
 
 				#------------------------------------------------------------------
 			elif about_button.is_over(pos):
 				#00000000000000000000000000000000000000000000000000 about 000000000
 				button_effect.play()
-				print('About button pressed')
 				#&&&&&&&&&&&&&&&&&& show page &&&&&&&&&&&&&&&&
 				run = About_page.show_about(win)
 

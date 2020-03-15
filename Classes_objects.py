@@ -10,34 +10,19 @@ class Player():
 		#attributes for a player in the game
 		self.name = name
 		self.balance = balance
-
-		print('Player {} was created succecfully'.format(self.name))
-	#so the player can see the name and the balance
-	def __str__(self):
-		return 'Player playing... {} \n Balance: {}'.format(self.name,self.balance)#will show when one's turn
-	#when exiting game allow new players to enter name
-	def __del__(self):
-		print('player {} deleted'.format(self.name))
 	#bet method so the player can bet
 	def bet(self,bet_amount):
 		if self.balance>= bet_amount:
 			self.balance -= bet_amount
-			print('bet for {} chips Accepted!\n new balance {}'.format(bet_amount,self.balance))
-		else:
-			return 'Balance insuficcient please choose an appropriate amount'
 	#winning method when u recive chips
 	def win(self,win_amount):
 		self.balance+=win_amount
-		if self.name == 'table':
-			print('{} new chips added for bet succecfully!'.format(win_amount))
-		else:
-			print('{} Won {} chips!'.format(self.name,win_amount))
 	#hit method so the player can ask for hit
 	
 #-----------------------------------------------------------------PLAYERS-------------------------------#
 table = Player('table',0)
 dealer = Player('Dealer',400)
-player1 = Player('Dvir',400)
+player1 = Player('Player1',400)
 
 def get_player(name):
 	if name == 'PLAYER1':
@@ -72,7 +57,7 @@ class Button():
 		#check if there is text to fill:
 		if self.text!='':
 			#set font:(font type, size)
-			font = pygame.font.SysFont('comiscans',self.font_size)
+			font = pygame.font.Font('Fonts/BadaboomBB_Reg.ttf',self.font_size)
 			#color font
 			text = font.render(self.text, 1, (0,0,0))
 			#place the text inside the box properly:(text,(x,y)location tuple)

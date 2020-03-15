@@ -20,7 +20,6 @@ def check_cards_sum(win, is_natural, card1, card2 = 0, cards_sum = 0):
 
 	elif new_cards_sum == 21:#if won
 		# if 21 first turn return stand which is true
-		print('21!, Stand')
 		Developer_help.write(win,'21!, Stand',90,200,100)
 		pygame.display.update()
 		pygame.time.delay(3000)
@@ -30,7 +29,6 @@ def check_cards_sum(win, is_natural, card1, card2 = 0, cards_sum = 0):
 
 		#if Bust
 	elif new_cards_sum > 21 :
-		print('BUST')
 		pygame.time.delay(1000)
 		Developer_help.write(win,'BUST',90,200,100)
 		pygame.display.update()
@@ -47,7 +45,6 @@ def check_game_reasults(win, dealer_reasults, player1_reasults, table_balance, p
 	'''
 	if dealer_reasults == player1_reasults:
 		#tie
-		print('Its a TIE')
 		Developer_help.write(win,'Tie',90,100,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
@@ -56,8 +53,7 @@ def check_game_reasults(win, dealer_reasults, player1_reasults, table_balance, p
 
 	elif dealer_reasults > player1_reasults:
 		#if dealer won
-		print('The Dealer has won')
-		Developer_help.write(win,'The Dealer has won!',90,100,300)
+		Developer_help.write(win,'The Dealer has won!',80,100,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
 		#player1 lost no amount to return
@@ -65,8 +61,7 @@ def check_game_reasults(win, dealer_reasults, player1_reasults, table_balance, p
 
 	elif player1_reasults > dealer_reasults:
 		#if player1 won 
-		print('Player1 won')
-		Developer_help.write(win,'{} has won {} chips!'.format(player1_name,table_balance),90,20,300)
+		Developer_help.write(win,'{} has won {} chips!'.format(player1_name,table_balance),70,20,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
 		return table_balance
@@ -78,7 +73,6 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 	'''
 	if dealer_reasults == player1_hand1 and dealer_reasults == player1_hand2:
 		#tie
-		print('Its a TIE')
 		Developer_help.write(win,'Tie',90,100,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
@@ -86,7 +80,6 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 		return player1_bet
 
 	elif dealer_reasults > player1_hand1 and dealer_reasults == player1_hand2:
-		print('Its a TIE')
 		Developer_help.write(win,'Tie with one hand',90,100,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
@@ -94,7 +87,6 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 		return round(player1_bet/2)
 
 	elif dealer_reasults == player1_hand1 and dealer_reasults > player1_hand2:
-		print('Its a TIE')
 		Developer_help.write(win,'Tie with one hand',90,100,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
@@ -103,7 +95,6 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 
 	elif dealer_reasults > player1_hand1 and dealer_reasults > player1_hand2:
 		#if dealer won
-		print('The Dealer has won')
 		Developer_help.write(win,'The Dealer has won!',90,100,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
@@ -112,16 +103,14 @@ def check_game_reasults_split(win, dealer_reasults, player1_hand1, player1_hand2
 
 	elif player1_hand1 > dealer_reasults and player1_hand2 > dealer_reasults:
 		#if player1 won with two hands
-		print('Player1 won')
-		Developer_help.write(win,'{} has won {} chips!'.format(player1_name,table_balance),90,20,300)
+		Developer_help.write(win,'{} has won {} chips!'.format(player1_name,table_balance),70,20,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
 		return table_balance
 
 	elif player1_hand1 > dealer_reasults or player1_hand2 > dealer_reasults:
 		#if player1 won with one hand only
-		print('Player1 won')
-		Developer_help.write(win,'{} has won {} chips!'.format(player1_name,table_balance - player1_bet),90,20,300)
+		Developer_help.write(win,'{} has won {} chips!'.format(player1_name,table_balance - player1_bet),70,20,300)
 		pygame.display.update()
 		pygame.time.delay(2000)
 		return table_balance - player1_bet

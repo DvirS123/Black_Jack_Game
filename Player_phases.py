@@ -55,7 +55,7 @@ def set_bet(win,balance):
 		win.blit(black_chip,(150,425))
 
 
-		pygame.draw.rect(win,(100,150,0),(520,40,200,100),0)#to reset the board
+		pygame.draw.rect(win,(100,150,0),(520,40,300,100),0)#to reset the board
 		Developer_help.write(win,'Balance: {}'.format(balance),30,550,50)
 		Developer_help.write(win,'bet amount: {}'.format(amount),30,550,100)
 
@@ -184,7 +184,6 @@ def set_bet(win,balance):
 							
 
 			if event.type == pygame.QUIT:
-				print('Exiting')
 				return 'quit'
 
 
@@ -237,10 +236,11 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 	draw_effect.play()
 	win.blit(card2_image,(card_x,card_y))
 	pygame.display.update()
-	print('{} it is your turn \nchip balance:{}'.format(player1_name,player1_balance))
 	#### check if split ###
 	split = False
 	if player1_card1[0] == player1_card2[0]:
+		card1_value = player1_card1[0]
+		card2_value = player1_card2[0]
 		is_split = True
 	#################################turn j,q,k cards to value 10##################
 	player1_card1 = Developer_help.correct_card_value(player1_card1)
@@ -259,7 +259,7 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 			high_ace_button.x = 200
 
 		#----------------------------------Turn-------------------------------#
-		pygame.draw.rect(win,(100,150,0),(470,40,300,100),0)#to reset the board
+		pygame.draw.rect(win,(100,150,0),(470,40,350,100),0)#to reset the board
 		Developer_help.write(win,"{}'s Balance: {}".format(player1_name,player1_balance),30,500,50)
 		Developer_help.write(win,'Overall bet amount: {}'.format(at_table),30,500,100)
 		pygame.time.delay(50)
@@ -324,7 +324,6 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 						cards_sum = [hand1,cards_sum]
 					pass_effect.play()
 					is_split = False
-					print('Player {} has ended his turn with sum of {}'.format(player1_name,cards_sum))
 					Developer_help.write(win,'Stand',90,200,100)
 					pygame.display.update()
 					pygame.time.delay(2000)
@@ -364,6 +363,9 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 					#so the function would stop and wont let the game continue
 				if low_ace_button.is_over(pos):
 					button_effect.play()
+					if is_double_down:
+						pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
+					is_double_down = False
 					is_ace = False
 					if split:
 						pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
@@ -372,6 +374,9 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 				if high_ace_button.is_over(pos):
 					button_effect.play()
 					is_ace = False
+					if is_double_down:
+						pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
+					is_double_down = False
 					if split:
 						pygame.draw.rect(win,(0,150,0),(40,190,120,275),0)#scrap button
 					else:
@@ -395,7 +400,7 @@ def player1_turn(win,player1_card1,player1_card2,at_table,player1_balance,player
 						Developer_help.write(win,'Overall bet amount: {}'.format(at_table),30,500,100)
 						pygame.display.update()
 						pygame.time.delay(50)
-						hand1 = Speical_moves.split(win,player1_card1,player1_card2,player1_name)
+						hand1 = Speical_moves.split(win,(card1_value,player1_card1[1]),(card2_value,player1_card2[1]),player1_name)
 						if hand1 == 'back':
 							return 'back'
 						elif hand1 == 'quit':

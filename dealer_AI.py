@@ -130,7 +130,6 @@ def dealer_turn(win,dealer_card1,dealer_card2,at_table):
 	draw_effect.play()
 	win.blit(card2_image,(card_x,card_y))
 	pygame.display.update()
-	print('{} it is your turn'.format('Dealer'))
 	######### correct the value
 	dealer_card1 = Developer_help.correct_card_value(dealer_card1)
 	dealer_card2 = Developer_help.correct_card_value(dealer_card2)
@@ -165,7 +164,6 @@ def dealer_turn(win,dealer_card1,dealer_card2,at_table):
 			elif cards_sum is False:
 				return False
 	pass_effect.play()
-	print('The {} has ended his turn with sum of {}'.format('Dealer',cards_sum))
 	Developer_help.write(win,'Stand',90,200,250)
 	pygame.display.update()
 	pygame.time.delay(2000)

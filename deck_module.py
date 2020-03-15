@@ -104,7 +104,6 @@ def pull_card():
 		pulled_card = pull_rand_card()#set new card
 		if len(used_cards) == 51:
 			#if all cards were used
-			print('All cards were burned , reseting deck now')
 			used_cards = []
 			pulled_card = pull_rand_card()
 			break

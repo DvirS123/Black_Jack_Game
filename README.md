@@ -5,4 +5,4 @@ i am using the pygame library.
 
 the main is the Black_Jack_game.py file.
 
-the Black_Jack_game.exe unpacks the folder.
+the Black_Jack_game.exe executes the game.
